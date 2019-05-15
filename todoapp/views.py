@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
-# from datetime import datetime
-# from django.utils.dateformat import DateFormat
+from datetime import datetime
+from django.utils.dateformat import DateFormat
 from .models import Todo
 
 def home(request):
-    todos = Todo.objects
-    return render(request, 'todo/home.html', {'todos':todos})
+    todos = Todo.objects.order_by('-priority')
+    now = datetime.today().date()
+    return render(request, 'todo/home.html', {'todos':todos, 'now':now})
 
 def detail(request, todo_id):
     todo_detail = get_object_or_404(Todo, pk=todo_id)
@@ -19,8 +20,10 @@ def create(request):
     todo.title = request.GET['title']
     todo.content = request.GET['content']
     todo.priority = request.GET['priority'] 
-    if request.GET['option'] == 'checked':
+    if 'option' in request.GET:
         todo.due = request.GET['due']
+    else:
+        todo.due = None
     todo.save()
     return redirect('/todo/' + str(todo.id))
 
@@ -36,8 +39,6 @@ def edit(request, todo_id):
 
 
 def destroy(request, todo_id):
-    print(todo_id)
     todo = Todo.objects.get(pk=todo_id)
-    print(todo.id)
     todo.delete()
     return redirect('/')

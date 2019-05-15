@@ -1,19 +1,25 @@
 {% load static %}
 <h1>HOME</h1>
 <link rel="stylesheet" href= "{% static 'todo/style.css' %}">
+
 <a href="{% url 'new' %}">create</a>
+
+<h1>{{now}}</h1>
 
 <div class = "container">
     {% for todo in todos.all %}
         <div id="list" name="check" class="{{todo.check}}" >
             <h2 id="title">{{todo.title}}</h2>
             {% if todo.due is not None %}
-                <h4>마감날짜: {{todo.due}}</h4>
+                <h4>마감날짜: {{ todo.due }}</h4>
+                {% if now > todo.due and todo.check is False %}
+                        <script>alert("{{todo.title}}의 마감이 지났습니다 ");</script>
+                {% endif %}
             {% endif %}
-            우선순위
-            {% if todo.priority == 1%}
-                <h4 style="color: coral"> 급함 </h4>
-            {% elif todo.priority == 2 %}
+        
+            {% if todo.priority is 1%}
+                <h4 style="color: lightcoral"> 급함 </h4>
+            {% elif todo.priority is 2 %}
                 <h4 style="color: red"> 매우 급함 </h4>
             {% endif %}
             {{todo.summery}} <a href="{% url 'detail' todo.id %}">....more</a>
