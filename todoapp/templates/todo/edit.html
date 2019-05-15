@@ -1,0 +1,46 @@
+<h1>edit</h1>
+
+<br>
+<div class="container">
+    <form method="POST">
+    {% csrf_token %}
+	  <h4>제목: </h4>
+	  <input type="text" name="title" value="{{todo.title}}">
+	  <br>
+	  <br>
+	  <h4>본문: </h4>
+	  <textarea cols=40 rows=10 name="content" value="{{todo.content}}">{{todo.content}}</textarea>
+	  <br>
+      <br>
+      <h4>우선순위</h4>
+      <select name="priority">
+        {% if todo.priority == 2 %}
+            <option value="2" selected="selected"> 매우 급함</option>
+            <option value="1"> 급함 </option>
+            <option value="0"> 보통 </option>
+            
+        {% elif todo.priority == 1 %}
+            <option value="2"> 매우 급함</option>
+            <option value="1" selected="selected"> 급함 </option>
+            <option value="0"> 보통 </option>
+        
+        {% else %}
+            <option value="2"> 매우 급함</option>
+            <option value="1"> 급함 </option>
+            <option value="0" selected="selected"> 보통 </option>
+        
+        {% endif %}
+      </select>
+      <!-- {#% if %} -->
+      <h4>마감기한</h4>
+      <input type="date" name="due" value="{{todo.due}}">
+      <!-- {#% endif %} -->
+      <br>
+      <br>
+      <input class="btn btn-dark" type="submit" value="제출하기">
+  </form>
+</div>
+
+<script>
+    document.getElementsByName("due").value = new Date().toISOString();
+</script>
