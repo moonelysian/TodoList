@@ -26,4 +26,5 @@ urlpatterns = [
     path('create', todoapp.views.create, name="create"),
     path('edit/<int:todo_id>', todoapp.views.edit, name="edit"),
     path('delete/<int:todo_id>', todoapp.views.destroy, name="delete"),
+    path('check/<int:todo_id>', todoapp.views.check, name="check"),
 ]

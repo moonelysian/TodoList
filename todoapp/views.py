@@ -37,8 +37,16 @@ def edit(request, todo_id):
         return redirect('/todo/'+str(todo.id))
     return render(request,'todo/edit.html', {'todo':todo} )
 
-
 def destroy(request, todo_id):
     todo = Todo.objects.get(pk=todo_id)
     todo.delete()
+    return redirect('/')
+
+def check(request, todo_id):
+    todo = Todo.objects.get(pk=todo_id)
+    if todo.check is False:
+        todo.check = True
+    else:
+        todo.check =  False
+    todo.save()
     return redirect('/')

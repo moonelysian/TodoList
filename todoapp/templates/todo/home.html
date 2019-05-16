@@ -4,12 +4,13 @@
 
 <a href="{% url 'new' %}">create</a>
 
-<h1>{{now}}</h1>
+<h1>Today: {{now}}</h1>
 
 <div class = "container">
     {% for todo in todos.all %}
-        <div id="list" name="check" class="{{todo.check}}" >
-            <h2 id="title">{{todo.title}}</h2>
+        <div id="list" name="{{todo.id}}" class="{{todo.check}}" >
+            {{todo.id}}
+            <h2>{{todo.title}}</h2>
             {% if todo.due is not None %}
                 <h4>마감날짜: {{ todo.due }}</h4>
                 {% if now > todo.due and todo.check is False %}
@@ -26,15 +27,16 @@
             <a href="{% url 'edit' todo.id %}">edit</a>
             <a href="{% url 'delete' todo.id %}">delete</a>
         </div>
-        <br>     
+        <br>
     {% endfor %}
 </div>
 
 <script>
-var list = document.querySelector('div');
-list.addEventListener('click', function(ev) {
-    if (ev.target.id === 'list') {
-        ev.target.classList.toggle('True');
-        }
-        }, false);
+    var list = document.querySelector('div');
+    list.addEventListener('click', function(ev) {
+        if (ev.target.id === 'list') {
+            ev.target.classList.toggle('True');
+            location.href = "check/"+ev.target.getAttribute('name');
+            }
+            }, false);
 </script>
