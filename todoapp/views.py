@@ -12,20 +12,20 @@ def detail(request, todo_id):
     todo_detail = get_object_or_404(Todo, pk=todo_id)
     return render(request, 'todo/detail.html',{'todo':todo_detail})
 
-def new(request):
-    return render(request, 'todo/new.html')
-
 def create(request):
     todo = Todo()
-    todo.title = request.GET['title']
-    todo.content = request.GET['content']
-    todo.priority = request.GET['priority']
-    todo.due = request.GET['due']
-    if 'option' in request.GET:
-        if todo.due is not None:
-            todo.due = request.GET['due']
-    todo.save()
-    return redirect('/todo/' + str(todo.id))
+    if (request.method == 'POST'):
+        todo.title = request.POST['title']
+        todo.content = request.POST['content']
+        todo.priority = request.POST['priority']
+        if 'option' in request.POST:
+            try:
+                todo.due = request.GET['due']
+            except:
+                print("except")
+        todo.save()
+        return redirect('/todo/' + str(todo.id))
+    return render(request, 'todo/new.html')
 
 def edit(request, todo_id):
     todo = Todo.objects.get(pk = todo_id)
@@ -51,3 +51,21 @@ def check(request, todo_id):
         todo.check =  False
     todo.save()
     return redirect('/')
+
+
+# def new(request):
+#     return render(request, 'todo/new.html')
+
+# def create(request):
+#     todo = Todo()
+#     todo.title = request.GET['title']
+#     todo.content = request.GET['content']
+#     todo.priority = request.GET['priority']
+#     if 'option' in request.GET:
+#         try:
+#             todo.due = request.GET['due']
+#             print("hiiiiiii")
+#         except:
+#             return redirect('todo/new.html')
+#     todo.save()
+#     return redirect('/todo/' + str(todo.id))

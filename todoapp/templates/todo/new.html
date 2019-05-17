@@ -14,7 +14,8 @@
     <div class="container">
       <h1 style= "margin: 0.5em 0em 0.5em 0em;">NEW</h1>
       
-      <form action="{% url 'create' %}">
+      <form method="POST" action="{% url 'create' %}">
+        {% csrf_token %}
         <div class="was-validated"> 
           <label for="title" class="col-sm-2 col-form-label"><h3>Title</h3></label>
           <input class="form-control is-invalid" type="text" id="title" name="title" required >
@@ -37,7 +38,7 @@
         <div class="form-group">
           <input type="checkbox" name="option" value="checked"/>
           <label for="option" class="col-sm-2 col-form-label"><h4>D-day</h4></label>
-          <small id="optionHelp" class="form-text text-muted">마감기한 설정시 반드시 체크하세요</small>
+          <small id="optionHelp" class="form-text text-muted">마감기한 설정 시 반드시 체크하세요</small>
           <br>
           <input class="form-control" type="date" name="due">
         </div>

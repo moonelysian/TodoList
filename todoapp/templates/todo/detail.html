@@ -11,10 +11,13 @@
             <img width="30px" height="30px" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIC0zMCA1MTIgNTEyIiB3aWR0aD0iNTEycHgiPjxwYXRoIGQ9Im00OTYuMTM2NzE5IDI5MS40ODA0NjktMTUxLTI0MmMtMTkuMzMyMDMxLTMwLjk4NDM3NS01Mi42NTYyNS00OS40ODA0NjktODkuMTM2NzE5LTQ5LjQ4MDQ2OWwtNjAgMjI2IDYwIDIyNmgxNTFjNTcuODk4NDM4IDAgMTA1LTQ3LjEwMTU2MiAxMDUtMTA1IDAtMTkuNjg3NS01LjQ4NDM3NS0zOC44ODY3MTktMTUuODYzMjgxLTU1LjUxOTUzMXptMCAwIi8+PHBhdGggZD0ibTE2Ni44NjMyODEgNDkuNDgwNDY5LTE1MSAyNDJjLTEwLjM3ODkwNiAxNi42MzI4MTItMTUuODYzMjgxIDM1LjgzMjAzMS0xNS44NjMyODEgNTUuNTE5NTMxIDAgNTcuODk4NDM4IDQ3LjEwMTU2MiAxMDUgMTA1IDEwNWgxNTF2LTQ1MmMtMzYuNDgwNDY5IDAtNjkuODA0Njg4IDE4LjQ5NjA5NC04OS4xMzY3MTkgNDkuNDgwNDY5em0wIDAiIGZpbGw9IiMyOTJjMzIiLz48cGF0aCBkPSJtNDQ1LjIzNDM3NSAzMjMuMjQyMTg4LTE1MS0yNDEuOTk2MDk0Yy04LjMwMDc4MS0xMy4zMDQ2ODgtMjIuNTkzNzUtMjEuMjQ2MDk0LTM4LjIzNDM3NS0yMS4yNDYwOTRsLTc1IDE2NiA3NSAxNjZoMTUxYzI0LjgxMjUgMCA0NS0yMC4xODc1IDQ1LTQ1IDAtOC41NjY0MDYtMi4yNzczNDQtMTYuNTU4NTk0LTYuNzY1NjI1LTIzLjc1NzgxMnptMCAwIiBmaWxsPSIjZmZhNDMzIi8+PHBhdGggZD0ibTIxNy43NjU2MjUgODEuMjQyMTg4LTE1MC45OTYwOTQgMjQyYy00LjQ5MjE4NyA3LjE5NTMxMi02Ljc2OTUzMSAxNS4xOTE0MDYtNi43Njk1MzEgMjMuNzU3ODEyIDAgMjQuODEyNSAyMC4xODc1IDQ1IDQ1IDQ1aDE1MXYtMzMyYy0xNS42NDA2MjUgMC0yOS45MzM1OTQgNy45NDE0MDYtMzguMjM0Mzc1IDIxLjI0MjE4OHptMCAwIiBmaWxsPSIjZmZjNDNiIi8+PHBhdGggZD0ibTI3MSAxNjVoLTE1bC0xMCA1MyAxMCA1M2gxNXptMCAwIi8+PHBhdGggZD0ibTI0MSAxNjVoMTV2MTA2aC0xNXptMCAwIiBmaWxsPSIjMjkyYzMyIi8+PHBhdGggZD0ibTI3MSAzMDFoLTE1bC0xMCAxNSAxMCAxNWgxNXptMCAwIi8+PHBhdGggZD0ibTI0MSAzMDFoMTV2MzBoLTE1em0wIDAiIGZpbGw9IiMyOTJjMzIiLz48L3N2Zz4K" />
         {% endif %}
         
+        <label class="col-sm-2 col-form-label"><h3>Title</h3></label>
         <h2>{{ todo.title }}</h2>
-        <p>{{ todo.content }}</p> 
+        <label class="col-sm-2 col-form-label"><h3>Content</h3></label>
+        <p>{{ todo.content }}</p>
         {% if todo.due is not None %}
-            <p>마감날짜:{{ todo.due }}</p>
+            <label class="col-sm-2 col-form-label"><h3>D-day</h3></label>
+            {{ todo.due }}
         {% endif %}
         <a href="{% url 'home' %}">돌아가기</a>
         <a href="{% url 'edit' todo.id %}">edit</a>
