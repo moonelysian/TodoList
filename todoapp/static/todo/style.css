@@ -1,7 +1,7 @@
 #list{
     cursor: pointer;
     position: relative;
-    padding: 12px 8px 12px 40px;
+    padding: 12px;
     background: #eee;
     font-size: 18px;
     transition: 0.2s;
@@ -30,6 +30,11 @@
     transform: rotate(45deg);
     height: 15px;
     width: 7px;
+  }
+
+  img{
+      width: 10px;
+      height: 10px;
   }
   
   
