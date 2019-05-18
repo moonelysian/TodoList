@@ -52,21 +52,3 @@ def check(request, todo_id):
         todo.check =  False
     todo.save()
     return redirect('/')
-
-
-# def new(request):
-#     return render(request, 'todo/new.html')
-
-# def create(request):
-#     todo = Todo()
-#     todo.title = request.GET['title']
-#     todo.content = request.GET['content']
-#     todo.priority = request.GET['priority']
-#     if 'option' in request.GET:
-#         try:
-#             todo.due = request.GET['due']
-#             print("hiiiiiii")
-#         except:
-#             return redirect('todo/new.html')
-#     todo.save()
-#     return redirect('/todo/' + str(todo.id))
