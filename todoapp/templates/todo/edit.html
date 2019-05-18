@@ -1,60 +1,50 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>EDIT</title>
-        {% load static %}
-        <link rel="stylesheet" href= "{% static 'todo/style.css' %}">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    </head>
-    
-    <body>
-    <div class="container">
-        <h1 style= "margin: 0.5em 0em 0.5em 0em;">EDIT</h1>
-        
-        <form method="POST" action="{% url 'edit' todo.id %}">
-        {% csrf_token %}
-            <div class="was-validated">
-                <label for="title" class="col-sm-2 col-form-label"><h3>Title</h3></label>
-                <input class="form-control is-invalid" type="text" id="title" name="title" value="{{todo.title}}" required >
-            </div>
+{% extends 'base.html' %}
 
-            <div class="form-group">
-                <label for="content" class="col-sm-2 col-form-label"><h3>Content</h3></label>
-                <textarea class="form-control" name="content" rows="10" value="{{todo.content}}">{{todo.content}}</textarea>
-            </div>
-            
-            <div class="form-group">
-                <label for="priority" class="col-sm-2 col-form-label"><h3>Priority</h3></label>
-                <select class="form-control" name="priority">
-                {% if todo.priority == 2 %}
-                    <option value="2" selected="selected"> 매우 급함</option>
-                    <option value="1"> 급함 </option>
-                    <option value="0"> 보통 </option>
-                    
-                {% elif todo.priority == 1 %}
-                    <option value="2"> 매우 급함</option>
-                    <option value="1" selected="selected"> 급함 </option>
-                    <option value="0"> 보통 </option>
-                
-                {% else %}
-                    <option value="2"> 매우 급함</option>
-                    <option value="1"> 급함 </option>
-                    <option value="0" selected="selected"> 보통 </option>
-                
-                {% endif %}
-                </select>
-            </div>
+{% block content %}
+    <h1 style= "margin: 0.5em 0em 0.5em 0em;">EDIT</h1>
 
-            <div class="form-group">
-                <label for="due" class="col-sm-2 col-form-label"><h4>D-day</h4></label>
-                <br>
-                <input class="form-control" type="date" name="due" value="{{todo.due}}">
-            </div>
-            <input class="btn btn-dark" type="submit" value="제출하기"> 
-          </form>
+    <form method="POST" action="{% url 'edit' todo.id %}">
+    {% csrf_token %}
+        <div class="was-validated">
+            <label for="title" class="col-sm-2 col-form-label"><h3>Title</h3></label>
+            <input class="form-control is-invalid" type="text" id="title" name="title" value="{{todo.title}}" required >
         </div>
-    </body>
-</html>
+
+        <div class="form-group">
+            <label for="content" class="col-sm-2 col-form-label"><h3>Content</h3></label>
+            <textarea class="form-control" name="content" rows="10" value="{{todo.content}}">{{todo.content}}</textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="priority" class="col-sm-2 col-form-label"><h3>Priority</h3></label>
+            <select class="form-control" name="priority">
+            {% if todo.priority == 2 %}
+                <option value="2" selected="selected"> 매우 급함</option>
+                <option value="1"> 급함 </option>
+                <option value="0"> 보통 </option>
+                
+            {% elif todo.priority == 1 %}
+                <option value="2"> 매우 급함</option>
+                <option value="1" selected="selected"> 급함 </option>
+                <option value="0"> 보통 </option>
+            
+            {% else %}
+                <option value="2"> 매우 급함</option>
+                <option value="1"> 급함 </option>
+                <option value="0" selected="selected"> 보통 </option>
+            
+            {% endif %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="option" class="col-form-label"><h4>D-day</h4></label>
+            {% if todo.due is not None %}
+                {{todo.due}}
+            {% endif %}
+            <br>
+            <input class="form-control" type="date" name="due">
+        </div>
+        <input class="btn btn-dark" type="submit" value="제출하기"> 
+    </form>
+{% endblock %}

@@ -19,11 +19,10 @@ def create(request):
         todo.title = request.POST['title']
         todo.content = request.POST['content']
         todo.priority = request.POST['priority']
-        if 'option' in request.POST:
-            try:
-                todo.due = request.POST['due']
-            except:
-                print("except")
+        if request.POST['due'] is '':
+            todo.due = None
+        else:
+            todo.due = request.POST['due']
         todo.save()
         return redirect('/todo/' + str(todo.id))
     return render(request, 'todo/new.html')
@@ -34,7 +33,8 @@ def edit(request, todo_id):
         todo.title = request.POST['title']
         todo.content = request.POST['content']
         todo.priority = request.POST['priority']
-        todo.due = request.POST['due']
+        if request.POST['due'] is not '':
+            todo.due = request.POST['due']       
         todo.save()
         return redirect('/todo/'+str(todo.id))
     return render(request,'todo/edit.html', {'todo':todo} )
