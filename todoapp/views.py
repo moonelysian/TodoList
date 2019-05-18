@@ -1,10 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from datetime import datetime
-# from django.utils import timezone
+from django.utils import timezone
 from .models import Todo
 
 def home(request):
-    todos = Todo.objects.order_by('-id')
+    todos = Todo.objects.order_by('-pub_date')
     now = datetime.today().date()
     return render(request, 'todo/home.html', {'todos':todos, 'now':now})
 
@@ -19,7 +19,7 @@ def create(request):
         todo.title = request.POST['title']
         todo.content = request.POST['content']
         todo.priority = request.POST['priority']
-        # todo.pub_date = timezone.datetime.now()
+        todo.pub_date = timezone.datetime.now()
         if request.POST['due'] is '':
             todo.due = None
         else:
@@ -34,6 +34,7 @@ def edit(request, todo_id):
         todo.title = request.POST['title']
         todo.content = request.POST['content']
         todo.priority = request.POST['priority']
+        todo.pub_date = timezone.datetime.now()
         if request.POST['due'] is not '':
             todo.due = request.POST['due']       
         todo.save()
