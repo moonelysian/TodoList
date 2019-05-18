@@ -10,7 +10,8 @@ def home(request):
 
 def detail(request, todo_id):
     todo_detail = get_object_or_404(Todo, pk=todo_id)
-    return render(request, 'todo/detail.html',{'todo':todo_detail})
+    now = datetime.today().date()
+    return render(request, 'todo/detail.html',{'todo':todo_detail, 'now':now})
 
 def create(request):
     todo = Todo()
@@ -20,7 +21,7 @@ def create(request):
         todo.priority = request.POST['priority']
         if 'option' in request.POST:
             try:
-                todo.due = request.GET['due']
+                todo.due = request.POST['due']
             except:
                 print("except")
         todo.save()
