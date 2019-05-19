@@ -15,12 +15,11 @@ sudo pip3 install virtualenvwrapper
 ### 가상환경 설정
 vim ~/.bashrc 후 끝에 아래 코드 추가
 
-`export WORKON_HOME=$HOME/.virtualenvs  
+export WORKON_HOME=$HOME/.virtualenvs  
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3  
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS=' -p /usr/bin/python3 '  
 export PROJECT_HOME=$HOME/Devel  
-source /usr/local/bin/virtualenvwrapper.sh`  
-
+source /usr/local/bin/virtualenvwrapper.sh
 
 ### 가상환경 생성
 mkvirtualenv myvenv
