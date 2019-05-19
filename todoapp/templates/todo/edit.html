@@ -6,7 +6,7 @@
             <img width="45em" height="45em" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ4Ny42MjIgNDg3LjYyMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDg3LjYyMiA0ODcuNjIyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPGc+Cgk8Zz4KCQk8Y2lyY2xlIHN0eWxlPSJmaWxsOiNDNEUxNUU7IiBjeD0iMjQzLjgxMSIgY3k9IjI0My44MTEiIHI9IjI0My44MTEiLz4KCQk8cGF0aCBzdHlsZT0iZmlsbDojQzRFMTVFOyIgZD0iTTQ4Ny40NzksMjUxLjc2NWwtODcuOTY1LTY5LjAxNmwtODAuMjEyLDAuMDA4bC04Ni41NTktNTIuMDkxbDIuMDU4LDIyNi4yODRsMTMzLjQ1OSw5Ni41NCAgICBDNDM3LjU5Miw0MTIuMjUxLDQ4NC43MjYsMzM3LjYxNyw0ODcuNDc5LDI1MS43NjV6Ii8+CgkJPHBhdGggc3R5bGU9Im9wYWNpdHk6MC4zNztmaWxsOiNCNUQyNEY7ZW5hYmxlLWJhY2tncm91bmQ6bmV3ICAgIDsiIGQ9Ik00ODcuNDc5LDI1MS43NjVsLTg3Ljk2NS02OS4wMTZsLTgwLjIxMiwwLjAwOCAgICBsLTg2LjU1OS01Mi4wOTFsMi4wNTgsMjI2LjI4NGwxMzMuNDU5LDk2LjU0QzQzNy41OTIsNDEyLjI1MSw0ODQuNzI2LDMzNy42MTcsNDg3LjQ3OSwyNTEuNzY1eiIvPgoJCTxwb2x5Z29uIHN0eWxlPSJmaWxsOiNGRkZGRkY7IiBwb2ludHM9Ijg4LjEwOSwyNDMuODA5IDIzNC44MDEsMTMwLjY2NiAyMzQuODAxLDE4Mi43NDkgMzk5LjUxNCwxODIuNzQ5IDM5OS41MTQsMzA0Ljg3MyAgICAgMjM0LjgwMSwzMDQuODczIDIzNC44MDEsMzU2Ljk1MSAgICIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
         </a>
     </div>
-    <h1 style = "margin-bottom: 0.5em;">EDIT</h1>
+    <h1 style = "color: yellowgreen; margin-bottom: 0.5em;">EDIT</h1>
     <hr>
     <form method="POST" action="{% url 'edit' todo.id %}">
     {% csrf_token %}
@@ -24,18 +24,18 @@
             <label for="priority" class="col-sm-2 col-form-label"><h3>Priority</h3></label>
             <select class="form-control" name="priority">
             {% if todo.priority == 2 %}
-                <option value="2" selected="selected"> 매우 급함</option>
-                <option value="1"> 급함 </option>
+                <option value="2" selected="selected"> 매우 중요</option>
+                <option value="1"> 중요 </option>
                 <option value="0"> 보통 </option>
                 
             {% elif todo.priority == 1 %}
-                <option value="2"> 매우 급함</option>
-                <option value="1" selected="selected"> 급함 </option>
+                <option value="2"> 매우 중요</option>
+                <option value="1" selected="selected"> 중요 </option>
                 <option value="0"> 보통 </option>
             
             {% else %}
-                <option value="2"> 매우 급함</option>
-                <option value="1"> 급함 </option>
+                <option value="2"> 매우 중요</option>
+                <option value="1"> 중요 </option>
                 <option value="0" selected="selected"> 보통 </option>
             
             {% endif %}
